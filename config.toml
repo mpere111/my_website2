@@ -1,7 +1,7 @@
 # Site settings
 baseURL = "https://mpere.netlify.app/"
 languageCode = "en-us"
-title = "Portfolio website - Matias Pere"
+title = "Portfolio Website - Matias Pere"
 theme = "forty"
 
 # Enter your tracking code to enable Google Analytics
@@ -20,7 +20,7 @@ disqusShortname = ""
 
   # Provide your metadata here.
   name = "Matias"
-  description = "TO DO - DESCRIPTION"
+  description = "Matias is a student at London Business School Reading for the Masters in Financial Analysis. He recently graduated from Bocconi University in Milan, Italy, where he was doing a BSc in Economics, Management and Computer Science"
 
   # Link custom assets relative to /static
   custom_css = []
@@ -82,8 +82,8 @@ disqusShortname = ""
     # To change the background image on the homepage banner, replace 'banner.jpg' in
     # the 'static/img' folder.
     title = "Hi, my name is Matias"
-    subtitle = "A RESPONSIVE SITE TEMPLATE DESIGNED BY HTML5 UP\nAND RELEASED UNDER THE CREATIVE COMMONS."
-    buttonText = "Get Started"
+    #subtitle = "A RESPONSIVE SITE TEMPLATE DESIGNED BY HTML5 UP\nAND RELEASED UNDER THE CREATIVE COMMONS."
+    buttonText = "Learn More"
 
 
   # Tiles Section
