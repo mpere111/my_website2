@@ -1,7 +1,7 @@
 # Site settings
 baseURL = "https://mpere.netlify.app"
 languageCode = "en-us"
-title = "Portfolio website for Matias Pere"
+title = "Portfolio website - Matias Pere"
 theme = "forty"
 
 # Enter your tracking code to enable Google Analytics
