@@ -37,7 +37,7 @@ disqusShortname = ""
 
   # Navigation Section
   [params.navigation]
-    title = "MATIAS PERE"
+    title = "MP"
     subtitle = "By Matias Pere"
     menu = "Menu"
     # Optional logo as brand stored in img/
@@ -48,11 +48,11 @@ disqusShortname = ""
       url = "#"
 
     [[params.navigation.links]]
-      name = "Change to something"
+      name = "Explore Content"
       url = "blogs"
 
     [[params.navigation.links]]
-      name = "Change to something else"
+      name = "Project X"
       url = "blogs/ipsum"
 
     [[params.navigation.links]]
