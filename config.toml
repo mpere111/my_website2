@@ -74,7 +74,7 @@ disqusShortname = ""
     # Button Style 2
     [[params.navigation.button2]]
       name = "Contact"
-      url = "mpere.mfa2021@london.edu"
+      url = "mailto:mpere.mfa2021@london.edu"
 
 
   # Banner section
