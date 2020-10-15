@@ -1,0 +1,195 @@
+---
+title: "Youth Risk Behavior Surveillance"
+author: "Matias Pere"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    theme: flatly
+    highlight: zenburn
+    number_sections: yes
+    toc: yes
+    toc_float: yes
+    code_folding: show
+---
+
+```{r, setup, echo=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE, 
+  warning = FALSE, 
+  tidy=FALSE,     # display code as typed
+  size="small")   # slightly smaller font for code
+options(digits = 3)
+
+# default figure size
+knitr::opts_chunk$set(
+  fig.width=6.75, 
+  fig.height=6.75,
+  fig.align = "center"
+)
+```
+
+
+```{r load-libraries, echo=FALSE}
+library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
+library(mosaic)
+library(ggthemes)
+library(GGally)
+library(readxl)
+library(here)
+library(skimr)
+library(janitor)
+library(broom)
+library(tidyquant)
+library(infer)
+library(openintro)
+library(tidyquant)
+```
+
+
+
+Every two years, the Centers for Disease Control and Prevention conduct the [Youth Risk Behavior Surveillance System (YRBSS)](https://www.cdc.gov/healthyyouth/data/yrbs/index.htm) survey, where it takes data from high schoolers (9th through 12th grade), to analyze health patterns. You will work with a selected group of variables from a random sample of observations during one of the years the YRBSS was conducted.
+
+## Loading the data
+
+```{r}
+data(yrbss)
+glimpse(yrbss)
+skim(yrbss)
+```
+
+## Exploratory Data Analysis
+
+We will first start with analyzing the `weight` of participants in kilograms.
+
+There are 1004 missing values in weight, and distribution of weight is right skewed.
+
+```{r, eda_on_weight}
+yrbss %>% 
+  filter(is.na(weight)) %>% 
+  summarize(missing_count = n()) #number of missing observations in weight
+
+yrbss %>% 
+  ggplot(aes(weight)) +
+  geom_histogram() + #plot the distribution of weight
+  theme_bw() + #theme
+  labs(title = "distribution of weight") # add title
+```
+
+Next, we consider the possible relationship between a high schooler’s weight and their physical activity.
+
+Let’s create a new variable `physical_3plus`, which will be `yes` if they are physically active for at least 3 days a week, and `no` otherwise.
+
+  
+```{r}
+yrbss <- yrbss %>% 
+  mutate(physical_3plus = ifelse(physically_active_7d >= 3, "yes", "no"))
+
+yrbss %>% filter(!is.na(physical_3plus)) %>% 
+  group_by(physical_3plus) %>% 
+  summarise(count = n()) %>% 
+  mutate(prop= count/sum(count),
+         se = sqrt(prop*(1-prop)/count),  #calculate stand error
+         t_critical = qt(0.975, count-1), #calculate t critical for 95% CI
+         CI_low = prop - t_critical*se,
+         CI_high = prop + t_critical*se)  #calculate high end for 95% CI)
+
+```
+
+The  95% confidence interval for the population proportion of high schools that are *NOT* active 3 or more days per week is 0.317 to 0.345.
+  
+
+In the following we make a boxplot of `physical_3plus` vs. `weight`. 
+
+```{r, boxplot}
+yrbss %>% 
+  filter(!is.na(physical_3plus)) %>% 
+  ggplot(aes(x = physical_3plus, y = weight, color = physical_3plus)) +
+  geom_boxplot(show.legend = FALSE) +
+  labs(title = "boxplot of physical_3plus vs. weight") +
+  theme_bw()
+```
+The median `weight` of `physical_3plus==yes` is larger, and there are more extreme `weight` of `physical_3plus==no`. I expected the median `weight` of `physical_3plus==yes` to be smaller because they tended to consume more energy, however that is not what the data shows. Maybe this is because people who do sports 3 times a week or more, are muscular and therefore heavy. Muscles are heavier than fat.
+
+## Confidence Interval
+
+Boxplots show how the medians of the two distributions compare, but we can also compare the means of the distributions using either a confidence interval or a hypothesis test.
+
+```{r}
+yrbss %>%
+  group_by(physical_3plus) %>%
+  filter(!is.na(physical_3plus)) %>% 
+  summarise(mean_weight = mean(weight, na.rm = TRUE),
+            sd_weight = sd(weight, na.rm=TRUE),
+            count = n(),
+            se_weight = sd_weight/sqrt(count),
+            t_critical = qt(0.975, count-1), 
+            margin_of_error = t_critical * se_weight,
+            lower = mean_weight - t_critical * se_weight,
+            upper = mean_weight + t_critical * se_weight
+            )
+
+```
+
+There is an observed difference of about 1.77kg (68.44 - 66.67), and we notice that the two confidence intervals do not overlap. It seems that the difference is at least 95% statistically significant. Let us also conduct a hypothesis test.
+
+## Hypothesis test with formula
+
+Null Hypothesis (h0): There is no difference of mean weights for students who exercise compared to those who do not.
+Alternative Hypothesis (h1): There is a difference of mean weights.
+
+```{r}
+t.test(weight ~ physical_3plus, data = yrbss)
+```
+
+
+
+## Hypothesis test with `infer`
+
+Next, we will introduce a new function, `hypothesize`, that falls into the infer workflow. We will use this method for conducting hypothesis tests.
+
+But first, we need to initialize the test, which we will save as `obs_diff`.
+
+```{r}
+obs_diff <- yrbss %>%
+  specify(weight ~ physical_3plus) %>%
+  calculate(stat = "diff in means", order = c("yes", "no"))
+
+```
+
+After we have initialized the test, we need to simulate the test on the null distribution, which we will save as null.
+
+
+```{r}
+null_dist <- yrbss %>%
+  specify(weight ~ physical_3plus) %>%
+  hypothesize(null = "independence") %>%
+  generate(reps = 1000, type = "permute") %>%
+  calculate(stat = "diff in means", order = c("yes", "no"))
+
+```
+
+We can visualize this null distribution with the following code:
+
+```{r}
+ggplot(data = null_dist, aes(x = stat)) +
+  geom_histogram()
+
+```
+
+
+Now that the test is initialized and the null distribution formed, we can visualise to see how many of these null permutations have a difference of at least `obs_stat` of `r obs_diff %>% pull() %>% round(2)`?
+
+We can also calculate the p-value for your hypothesis test using the function `infer::get_p_value()`.
+
+```{r}
+
+null_dist %>% visualize() +
+  shade_p_value(obs_stat = obs_diff, direction = "two-sided")
+
+null_dist %>%
+  get_p_value(obs_stat = obs_diff, direction = "two_sided")
+
+```
+
+This is the standard workflow for performing hypothesis tests.
+As the p-value is 0 we can conclude to reject our null-hypothesis.
