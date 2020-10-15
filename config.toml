@@ -93,7 +93,7 @@ disqusShortname = ""
     
     [[params.tiles.showcase]]
       title = "Stock Return Analysis"
-      subtitle = "Dow Jones and S&P"
+      subtitle = "Dow Jones and S&P Return Analysis"
       image = "pic01.jpg"
       url = "projects/project1"
 
