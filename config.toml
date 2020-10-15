@@ -101,7 +101,7 @@ disqusShortname = ""
       title = "Climate Change"
       subtitle = "Analysing Temperature Anomalies"
       image = "pic02.jpg"
-      url = "blogs/projects/project2"
+      url = "projects/project2"
 
     [[params.tiles.showcase]]
       title = "Magna"
