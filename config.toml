@@ -110,8 +110,8 @@ disqusShortname = ""
       url = "projects/project3"
 
     [[params.tiles.showcase]]
-      title = "Ipsum"
-      subtitle = "Nisl Sed Aliquam"
+      title = "Inverted Yield Curve"
+      subtitle = "An Analysis"
       image = "pic04.jpg"
       url = "blogs/ipsum"
 
