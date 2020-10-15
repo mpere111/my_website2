@@ -11,6 +11,8 @@ blogdown::new_site(theme = "MarcusVirg/forty",
           to_yaml = TRUE)
           
           
+blogdown:::preview_site(startup = TRUE)
+          
           
           
           
