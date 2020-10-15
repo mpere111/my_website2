@@ -1,0 +1,189 @@
+---
+title: "Returns of Financial Stocks"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load-libraries, warning=FALSE, message=FALSE, echo=FALSE}
+library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
+library(mosaic)
+library(ggthemes)
+library(lubridate)
+library(fivethirtyeight)
+library(here)
+library(skimr)
+library(janitor)
+library(vroom)
+library(tidyquant)
+library(rvest)    # scrape websites
+library(purrr)  
+library(lubridate) #to handle dates
+```
+
+
+  
+```{r load_nyse_data, message=FALSE, warning=FALSE}
+nyse <- read_csv("nyse.csv")
+glimpse(nyse)
+skim(nyse)
+```
+
+We are going to show the number of companies per sector
+
+```{r companies_per_sector}
+
+companies_per_sector <- nyse %>%
+  group_by(sector)%>%
+  summarise(Number_of_Companies = n())%>%
+  arrange(desc(Number_of_Companies))
+
+ggplot(companies_per_sector, aes(y=reorder(sector,Number_of_Companies),x=Number_of_Companies))+
+  geom_col() +
+  theme_economist() +
+  labs(title="Sectors with number of companies in it \n", y="", x="\nNumber of Companies") +
+  scale_x_continuous(expand = c(0,0))
+  
+```
+
+Next, let's choose the [Dow Jones Industrial Aveareg (DJIA)](https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average) stocks and their ticker symbols and download some data. Besides the thirty stocks that make up the DJIA, we will also add `SPY` which is an SP500 ETF (Exchange Traded Fund).
+
+
+```{r, tickers_from_wikipedia}
+
+djia_url <- "https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average"
+
+#get tables that exist on URL
+tables <- djia_url %>% 
+  read_html() %>% 
+  html_nodes(css="table")
+
+
+# parse HTML tables into a dataframe called djia. 
+# Use purr::map() to create a list of all tables in URL
+djia <- map(tables, . %>% 
+               html_table(fill=TRUE)%>% 
+               clean_names())
+
+
+# constituents
+table1 <- djia[[2]] %>% # the second table on the page contains the ticker symbols
+  mutate(date_added = ymd(date_added),
+         
+         # if a stock is listed on NYSE, its symbol is, e.g., NYSE: MMM
+         # We will get prices from yahoo finance which requires just the ticker
+         
+         # if symbol contains "NYSE*", the * being a wildcard
+         # then we jsut drop the first 6 characters in that string
+         ticker = ifelse(str_detect(symbol, "NYSE*"),
+                          str_sub(symbol,7,11),
+                          symbol)
+         )
+
+# we need a vector of strings with just the 30 tickers + SPY
+tickers <- table1 %>% 
+  select(ticker) %>% 
+  pull() %>% # pull() gets them as a sting of characters
+  c("SPY") # and lets us add SPY, the SP500 ETF
+
+```
+
+
+
+
+```{r get_price_data, message=FALSE, warning=FALSE, cache=TRUE}
+# Notice the cache=TRUE argument in the chunk options. Because getting data is time consuming, # cache=TRUE means that once it downloads data, the chunk will not run again next time you knit your Rmd
+
+myStocks <- tickers %>% 
+  tq_get(get  = "stock.prices",
+         from = "2000-01-01",
+         to   = "2020-08-31") %>%
+  group_by(symbol) 
+
+glimpse(myStocks) # examine the structure of the resulting data frame
+```
+
+Financial performance analysis depend on returns; If I buy a stock today for 100 and I sell it tomorrow for 101.75, my one-day return, assuming no transaction costs, is 1.75%. So given the adjusted closing prices, our first step is to calculate daily and monthly returns.
+
+
+```{r calculate_returns, message=FALSE, warning=FALSE, cache=TRUE}
+#calculate daily returns
+myStocks_returns_daily <- myStocks %>%
+  tq_transmute(select     = adjusted, 
+               mutate_fun = periodReturn, 
+               period     = "daily", 
+               type       = "log",
+               col_rename = "daily_returns",
+               cols = c(nested.col))  
+
+#calculate monthly  returns
+myStocks_returns_monthly <- myStocks %>%
+  tq_transmute(select     = adjusted, 
+               mutate_fun = periodReturn, 
+               period     = "monthly", 
+               type       = "arithmetic",
+               col_rename = "monthly_returns",
+               cols = c(nested.col)) 
+
+#calculate yearly returns
+myStocks_returns_annual <- myStocks %>%
+  group_by(symbol) %>%
+  tq_transmute(select     = adjusted, 
+               mutate_fun = periodReturn, 
+               period     = "yearly", 
+               type       = "arithmetic",
+               col_rename = "yearly_returns",
+               cols = c(nested.col))
+```
+
+Create a dataframe and assign it to a new object, where you summarise monthly returns since 2017-01-01 for each of the stocks and `SPY`; min, max, median, mean, SD.
+
+```{r summarise_monthly_returns}
+
+summarise_monthly_returns <- myStocks_returns_monthly %>%
+  group_by(symbol)%>%
+  summarise(min_month_return = min(monthly_returns), 
+            max_month_return = max(monthly_returns),
+            median_month_return = median(monthly_returns),
+            mean_month_return = mean(monthly_returns),
+            sd_month_return = sd(monthly_returns)
+            )
+summarise_monthly_returns
+```
+
+
+We can make a density plot, using `geom_density()`, for each of the stocks
+```{r density_monthly_returns}
+
+ggplot(myStocks_returns_monthly, aes(x=monthly_returns))+
+  geom_density()+
+  facet_wrap(~symbol)+
+  labs(title='Monthly Returns - Density Plots\n', x="\nMonthly returns", y="Percentage\n")+
+  theme_economist()
+
+```
+
+
+We can see that the stocks densities seem to have a standard normal distribution. The stocks with the widest density plots have the most volatility present. The riskiest stock form what we can see in the graphs seems to be AXP and the least risky AAPL
+
+Finally, we produce a plot that shows the expected monthly return (mean) of a stock on the Y axis and the risk (standard deviation) in the X-axis. Please use `ggrepel::geom_text_repel()` to label each stock with its ticker symbol
+
+```{r risk_return_plot}
+library(ggrepel)
+
+ggplot(summarise_monthly_returns, aes(y=mean_month_return, x=sd_month_return, label=symbol))+
+  geom_point() +
+  geom_text_repel()+
+  geom_lm(method=lm,se=FALSE)+
+  theme_economist()+
+  labs(title="Relation between monthly return and risk\n", y="Monthly return", x="\nRisk (standard deviation)")
+
+```
+
+
+From the plot we can infer that as the mean monthly return rises, so does the standard deviation, which makes sense, since a higher return usually indicates higher variability in prices, meaning that the higher the return of the stock the more risk associated with the returns.
+There are some cases, where the volatility (standard deviation) is high, with a lower mean monthly return. In particular, the biggest outliar is DOW, with a mean monthly return smaller than 0.01 and the highest standard deviation. There are some other cases bordering on having outliar-like characteristics, like Cisco Systems, american express and other financial services stocks like JP Morgan and Goldman Sachs.
+
+
