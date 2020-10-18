@@ -7,6 +7,6 @@ description: One of my biggest passions is skiing. During winters, I spend a lot
 draft: false
 image: pic08.jpg
 keywords: ""
-slug: tempus
-title: Tempus
+slug: Powder
+title: powder
 ---
