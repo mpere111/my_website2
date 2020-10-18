@@ -101,19 +101,19 @@ disqusShortname = ""
       title = "Climate Change"
       subtitle = "Analysing Temperature Anomalies"
       image = "pic02.jpg"
-      url = "projects/project2"
+      url = "projects/project2/Climate.html"
 
     [[params.tiles.showcase]]
       title = "Youth Risk Behavior Surveillance System"
       subtitle = "An Analysis"
       image = "pic03.jpg"
-      url = "projects/project3"
+      url = "projects/project3/age.html"
 
     [[params.tiles.showcase]]
       title = "Inverted Yield Curve"
       subtitle = "An Analysis"
       image = "pic04.jpg"
-      url = "projects/project4"
+      url = "projects/project4/yield.html"
 
     #[[params.tiles.showcase]]
       #title = "Consequat"
