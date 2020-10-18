@@ -6,4 +6,5 @@ slug: blogs
 title: Lifestyle
 ---
 
-My Project in Data Analytics for Finance and London Business School.
+To get to know me better
+
