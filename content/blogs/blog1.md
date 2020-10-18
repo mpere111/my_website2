@@ -7,8 +7,8 @@ description: ""
 draft: false
 image: pic10.jpg
 keywords: ""
-slug: The sea
-title: The sea
+slug: The Sea
+title: The Sea
 ---
 
 I love the seaside. It's where I spend most of my summers when not working. I've been learning how to sail this year and spent 2 weeks on a sailboat in Croatia learning the ropes.

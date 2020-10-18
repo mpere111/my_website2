@@ -7,6 +7,6 @@ description: Lorem Etiam Nullam
 draft: false
 image: pic09.jpg
 keywords: ""
-slug: Racing
-title: Racing
+slug: Ski Racing
+title: Ski Racing
 ---
