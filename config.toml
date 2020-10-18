@@ -95,7 +95,7 @@ disqusShortname = ""
       title = "Stock Return Analysis"
       subtitle = "Dow Jones and S&P Return Analysis"
       image = "pic01.jpg"
-      url = "projects/project1"
+      url = "projects/project1/Stock_Returns.html"
 
     [[params.tiles.showcase]]
       title = "Climate Change"
@@ -113,7 +113,7 @@ disqusShortname = ""
       title = "Inverted Yield Curve"
       subtitle = "An Analysis"
       image = "pic04.jpg"
-      url = "blogs/ipsum"
+      url = "projects/project4"
 
     #[[params.tiles.showcase]]
       #title = "Consequat"
