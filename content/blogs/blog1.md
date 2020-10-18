@@ -3,12 +3,10 @@ categories:
 - ""
 - ""
 date: "2017-10-31T21:28:43-05:00"
-description: ""
+description: "I love the seaside. It's where I spend most of my summers when not working. I've been learning how to sail this year and spent 2 weeks on a sailboat in Croatia learning the ropes."
 draft: false
 image: pic10.jpg
 keywords: ""
 slug: The Sea
 title: The Sea
 ---
-
-I love the seaside. It's where I spend most of my summers when not working. I've been learning how to sail this year and spent 2 weeks on a sailboat in Croatia learning the ropes.
