@@ -123,7 +123,7 @@ disqusShortname = ""
       title = "My CV"
       subtitle = "Click to view"
       image = "pic07.jpg"
-      url = "projects/CVwebsite"
+      url = "projects/CVwebsite.pdf"
 
     #[[params.tiles.showcase]]
       #title = "Etiam"
