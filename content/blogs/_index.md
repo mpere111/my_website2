@@ -6,5 +6,5 @@ slug: blogs
 title: Lifestyle
 ---
 
-To get to know me better
+Get to know me better
 
