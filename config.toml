@@ -125,11 +125,11 @@ disqusShortname = ""
       image = "pic07.jpg"
       url = "projects/CVwebsite.pdf"
 
-    #[[params.tiles.showcase]]
-      #title = "Etiam"
-      #subtitle = "Feugiat Amet Tempus"
-      #image = "pic06.jpg"
-      #url = "blogs/ipsum"
+    [[params.tiles.showcase]]
+      title = "London Business School"
+      subtitle = "Learn about LBS"
+      image = "pic06.jpg"
+      url = "https://www.london.edu"
     # You can make more showcases by copy and pasting the code above
 
   [params.blog]
