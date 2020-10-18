@@ -85,8 +85,8 @@ disqusShortname = ""
   [params.banner]
     # To change the background image on the homepage banner, replace 'banner.jpg' in
     # the 'static/img' folder.
-    title = "Matias Pere - Data Analytics Portfolio"
-    subtitle = "Autumn 2020"
+    title = "Matias Pere - Personal Portfolio"
+    subtitle = "Data Analytics"
     buttonText = "Learn More"
 
 
@@ -140,16 +140,14 @@ disqusShortname = ""
     # To add more blogs just copy and paste the code.
 
   # Section Type Two
-#  [params.two]
-#    enable = true
-#    title = "Massa libero"
-#    subtitle = """Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. 
-#    Mauris aliquet magna magna sed nunc rhoncus pharetra. 
-#    Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. 
-#    Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero.
-#    Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus."""
-#    buttonText = "Get Started"
-#    url = "blogs"
+  [params.two]
+    enable = true
+    title = "Biography"
+    subtitle = "A few words". 
+    """Matias is a student at London Business School, reading for the Masters in Financial Analysis. He was born and raised in Ljubljana, Slovenia, where he finished high school. He then attended Bocconi University in Milan, Italy, where he was studying for a BSc in Economics, Management and Computer Science, from which he graduated in 2020 with a final mark of 107/110. Demonstrating his passion for finance, his thesis was titled “Passive Investing and FTSE 100 Index Inclusion and Deletion Effects. While at university he spent his summers working. In 2019 he interned at Deloitte, where he worked as a strategy and Operations Summer Analyst, restructuring Slovenia’s largest bank. In 2018 he spent his summer in New York City, working at a technology startup in the advertising industry as a Sales & Account Management Intern.
+    """"
+    buttonText = "Get Started"
+    url = "blogs"
 
 
   # Contact section
