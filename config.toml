@@ -119,11 +119,11 @@ disqusShortname = ""
       image = "pic04.jpg"
       url = "projects/project4/yield.html"
 
-    #[[params.tiles.showcase]]
-      #title = "Consequat"
-      #subtitle = "Ipsum Dolor Sit Amet"
-      #image = "pic05.jpg"
-      #url = "blogs/ipsum"
+    [[params.tiles.showcase]]
+      title = "My CV"
+      subtitle = "Click to view"
+      image = "pic07.jpg"
+      url = "projects/CVwebsite"
 
     #[[params.tiles.showcase]]
       #title = "Etiam"
