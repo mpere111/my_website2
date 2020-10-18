@@ -7,6 +7,6 @@ description: "I'm originally from Slovenia, a country in Central Europe, on the 
 draft: false
 image: pic10.jpg
 keywords: ""
-slug: The Sea
-title: The Sea
+slug: Slovenia
+title: Slovenia
 ---
