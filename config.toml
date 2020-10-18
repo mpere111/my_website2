@@ -47,9 +47,9 @@ disqusShortname = ""
       name = "Home"
       url = "#"
 
-    [[params.navigation.links]]
-      name = "Explore Content"
-      url = "blogs"
+#    [[params.navigation.links]]
+ #     name = "Explore Content"
+  #    url = "blogs"
 
 #    [[params.navigation.links]]
 #      name = " "
@@ -86,7 +86,7 @@ disqusShortname = ""
     # To change the background image on the homepage banner, replace 'banner.jpg' in
     # the 'static/img' folder.
     title = "Matias Pere - Data Analytics Portfolio"
-    #subtitle = "A RESPONSIVE SITE TEMPLATE DESIGNED BY HTML5 UP\nAND RELEASED UNDER THE CREATIVE COMMONS."
+    subtitle = "Autumn 2020"
     buttonText = "Learn More"
 
 
@@ -97,7 +97,7 @@ disqusShortname = ""
     
     [[params.tiles.showcase]]
       title = "Stock Return Analysis"
-      subtitle = "Dow Jones and S&P Return Analysis"
+      subtitle = "An R Project"
       image = "pic01.jpg"
       url = "projects/project1/Stock_Returns.html"
 
@@ -115,7 +115,7 @@ disqusShortname = ""
 
     [[params.tiles.showcase]]
       title = "Inverted Yield Curve"
-      subtitle = "An Analysis"
+      subtitle = "An Overview"
       image = "pic04.jpg"
       url = "projects/project4/yield.html"
 
@@ -140,16 +140,16 @@ disqusShortname = ""
     # To add more blogs just copy and paste the code.
 
   # Section Type Two
-  [params.two]
-    enable = true
-    title = "Massa libero"
-    subtitle = """Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. 
-    Mauris aliquet magna magna sed nunc rhoncus pharetra. 
-    Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. 
-    Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero.
-    Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus."""
-    buttonText = "Get Started"
-    url = "blogs"
+#  [params.two]
+#    enable = true
+#    title = "Massa libero"
+#    subtitle = """Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. 
+#    Mauris aliquet magna magna sed nunc rhoncus pharetra. 
+#    Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. 
+#    Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero.
+#    Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus."""
+#    buttonText = "Get Started"
+#    url = "blogs"
 
 
   # Contact section
