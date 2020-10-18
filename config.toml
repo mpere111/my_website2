@@ -51,13 +51,13 @@ disqusShortname = ""
       name = "Explore Content"
       url = "blogs"
 
-    [[params.navigation.links]]
-      name = "Project X"
-      url = "blogs/ipsum"
+#    [[params.navigation.links]]
+#      name = " "
+#      url = "blogs/ipsum"
 
-    [[params.navigation.links]]
-      name = "Elements"
-      url = "elements.html"
+#    [[params.navigation.links]]
+#     name = "Elements"
+#     url = "elements.html"
 
     # Add custom links here by uncommenting code below. To remove links just delete
     # the [[params.navigation.links]] map associated with that link. Copy and paste
@@ -76,6 +76,10 @@ disqusShortname = ""
       name = "Contact"
       url = "mailto:mpere.mfa2021@london.edu"
 
+    # Button Style 1
+    [[params.navigation.button1]]
+      name = "LinkedIn"
+      url = "https://www.linkedin.com/in/mpere/"
 
   # Banner section
   [params.banner]
