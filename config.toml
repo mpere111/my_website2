@@ -48,7 +48,7 @@ disqusShortname = ""
       url = "#"
 
     [[params.navigation.links]]
-      name = "Explore Content"
+      name = "More about me"
       url = "blogs"
 
 #    [[params.navigation.links]]
@@ -143,7 +143,7 @@ disqusShortname = ""
   [params.two]
     enable = true
     title = "A short biography"
-    subtitle = """Matias is a student at London Business School, reading for the Masters in Financial Analysis. He was born and raised in Ljubljana, Slovenia, where he finished high school. He then attended Bocconi University in Milan, Italy, where he was studying for a BSc in Economics, Management and Computer Science, from which he graduated in 2020 with a final mark of 107/110. Demonstrating his passion for finance, his thesis was titled “Passive Investing and FTSE 100 Index Inclusion and Deletion Effects. While at university he spent his summers working. In 2019 he interned at Deloitte, where he worked as a strategy and Operations Summer Analyst, restructuring Slovenia’s largest bank. In 2018 he spent his summer in New York City, working at a technology startup in the advertising industry as a Sales & Account Management Intern!"""
+    subtitle = """I'm a student at London Business School, reading for the Masters in Financial Analysis. I was born and raised in Ljubljana, Slovenia, where I finished high school. I attended Bocconi University in Milan, Italy, where I was studying for a BSc in Economics, Management and Computer Science, from which I graduated in 2020 with a final mark of 107/110. Demonstrating my passion for finance, I titled my thesis  “Passive Investing and FTSE 100 Index Inclusion and Deletion Effects. While at university I spent my summers working. In 2019 I interned at Deloitte, where I worked as a strategy and Operations Summer Analyst, restructuring Slovenia’s largest bank. In 2018 I spent the summer in New York City, working at a technology startup in the advertising industry as a Sales & Account Management Intern"""
     buttonText = "Get Started"
     url = "blogs"
 
