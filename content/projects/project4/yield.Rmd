@@ -1,14 +1,13 @@
 ---
-title: "Weather Anomalies"
+title: "Yield Curve Inversion"
 author: "Matias Pere"
 date: "15/10/2020"
 output: html_document
-
 ---
 
 
 ```{r, setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r, setup2, warning=FALSE, message=FALSE, echo=FALSE}
@@ -28,7 +27,7 @@ knitr::opts_chunk$set(
 
 
 
-```{r load-libraries, echo=FALSE}
+```{r load-libraries, echo=FALSE,include=FALSE}
 library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
 library(mosaic)
 library(ggthemes)
@@ -44,7 +43,6 @@ library(openintro)
 library(tidyquant)
 ```
 
-# 4. Challenge 1: Yield Curve inversion
 
 Every so often, we hear warnings from commentators on the "inverted yield curve" and its predictive power with respect to recessions. An explainer what a [inverted yield curve is can be found here](https://www.reuters.com/article/us-usa-economy-yieldcurve-explainer/explainer-what-is-an-inverted-yield-curve-idUSKBN1O50GA). If you'd rather listen to something, here is a great podcast from [NPR on yield curve indicators](https://www.podbean.com/media/share/dir-4zgj9-6aefd11)
 

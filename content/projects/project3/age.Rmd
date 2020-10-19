@@ -1,5 +1,5 @@
 ---
-title: "Youth Risk Behaviour Surveillance Analysis"
+title: "Youth Risk Behaviour Analysis"
 author: "Matias Pere"
 date: "15/10/2020"
 output: html_document
@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 ```
 
 
-```{r load-libraries, echo=FALSE}
+```{r load-libraries, echo=FALSE, include=FALSE}
 library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
 library(mosaic)
 library(ggthemes)
