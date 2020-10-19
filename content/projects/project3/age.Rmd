@@ -1,14 +1,16 @@
 ---
-categories:
-- ""
-- ""
 title: "Youth Risk Behavior Surveillance"
-date: "2020-10-10"
-draft: false
-keywords: ""
-slug: age
+author: "Matias Pere"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    theme: flatly
+    highlight: zenburn
+    number_sections: yes
+    toc: yes
+    toc_float: yes
+    code_folding: show
 ---
-
 
 ```{r, setup, echo=FALSE}
 knitr::opts_chunk$set(
@@ -17,6 +19,7 @@ knitr::opts_chunk$set(
   tidy=FALSE,     # display code as typed
   size="small")   # slightly smaller font for code
 options(digits = 3)
+
 # default figure size
 knitr::opts_chunk$set(
   fig.width=6.75, 
@@ -24,7 +27,6 @@ knitr::opts_chunk$set(
   fig.align = "center"
 )
 ```
-
 
 
 ```{r load-libraries, echo=FALSE}
