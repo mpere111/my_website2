@@ -117,7 +117,7 @@ disqusShortname = ""
       title = "Inverted Yield Curve"
       subtitle = "An Overview"
       image = "pic04.jpg"
-      url = "projects/project4/yield.Rmd"
+      url = "projects/project4"
 
     [[params.tiles.showcase]]
       title = "My CV"
