@@ -111,7 +111,7 @@ disqusShortname = ""
       title = "Youth Risk Behavior Surveillance System"
       subtitle = "An Analysis"
       image = "pic03.jpg"
-      url = "projects/project3/age.html"
+      url = "projects/project3"
 
     [[params.tiles.showcase]]
       title = "Inverted Yield Curve"
